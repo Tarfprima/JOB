@@ -1,0 +1,9 @@
+{% extends 'profi/base.html' %}
+{% load static %}
+{% block menu %}
+<link rel="stylesheet" href={% static 'mainpage/style.css' %}>
+<div id="menu">
+    <a href="/">Главная</a>
+    <a href={% url 'product_list' %}>Товары</a>
+</div>
+{% endblock %}

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Интернет-магазин</title>
+    {% load static %}
+    <link rel="stylesheet" href={% static 'css/style.css' %}>
+</head>
+<body>
+    <h1>Наш Блог</h1>
+    {% block menu %}{% endblock %}
+    {% block content %}{% endblock %}
+    <div>Copyright (c) {% now 'Y' %}</div>
+</body>
+</html>

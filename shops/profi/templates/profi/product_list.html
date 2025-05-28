@@ -1,0 +1,23 @@
+{% extends "profi/main.html" %}
+
+{% block content %}
+    <h2>Товары</h2>
+
+    
+    <form method="post">
+        {% csrf_token %}
+        <label for="max_price">Фильтр по цене:</label>
+        <input type="number" id="max_price" name="price" placeholder="Макс. цена">
+        <button type="submit">Применить</button>
+    </form>
+
+    <ul>
+    {% for product in products %}
+        <li>
+            <h3>{{ product.name }}</h3>
+            <p>Цена: {{ product.price }} ₽</p>
+            <p>Дата: {{ product.created_at|date:"d.m.Y" }}</p>
+        </li>
+    {% endfor %}
+    </ul>
+{% endblock %}
