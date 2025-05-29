@@ -16,7 +16,7 @@
         <li>
             <h3>{{ product.name }}</h3>
             <p>Цена: {{ product.price }} ₽</p>
-            <p>Дата: {{ product.created_at|date:"d.m.Y" }}</p>
+            <p>Дата: {{ product.dt|date:"d.m.Y" }}</p>
         </li>
     {% endfor %}
     </ul>
