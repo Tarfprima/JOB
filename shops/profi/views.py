@@ -1,8 +1,7 @@
 
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Product
-from django.core.paginator import Paginator
-
+from django.contrib.auth.decorators import login_required
 
 def product_list(request):
     
@@ -23,3 +22,28 @@ def product_list(request):
         'profi/product_list.html',
         {'products': products}
     )
+
+
+
+def login_view(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticated(request, username=username, password=password)
+        
+        if user is not None:
+            login(request, user)
+            return redirect('/profile/')  
+        else:
+            return render(request, 'profi/login.html', )
+    
+    return render(request, 'profi/login.html')   
+
+
+
+def profile(request):
+    if not request.user.is_authenticated:
+        return redirect('/login/')
+    return render(request, 'profi/profile.html')
+
+

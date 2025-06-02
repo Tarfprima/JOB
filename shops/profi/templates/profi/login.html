@@ -1,0 +1,15 @@
+{% extends "profi/main.html" %}
+
+{% block content %}
+    <h2>Войдите в аккаунт</h2>
+    <form method="post">
+        {% csrf_token %}
+        <label for="username">Логин:</label>
+        <input type="text" id="username" name="username"><br><br>
+
+        <label for="password">Пароль:</label>
+        <input type="password" id="password" name="password"><br><br>
+
+        <input type="submit" value="Войти">
+    </form>
+{% endblock %}
