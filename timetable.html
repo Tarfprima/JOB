@@ -1,0 +1,44 @@
+{% load static %}
+<script src={% static 'js/appointment.js' %} ></script>
+<link rel="stylesheet" href={% static 'css/styles.css' %}>
+<h1>Расписание для {{user}}</h1>
+{% csrf_token %}
+<table>
+    <thead>
+        {% for day in days %}
+        <th>{{day.weekday}}</th>
+        {% endfor %}
+    </thead>
+    <tbody>
+        {% for day in days %}
+        <td>
+            <ul>
+                {% for slot in day.slots %}
+                    {% if not slot.client %}
+                    <li id={{day.weekday}}
+                        onclick="make_appointment(event)">
+                        <input
+                            type="hidden"
+                            value={{slot.dt}}
+                        >
+                        <input
+                        type="button"
+                        value={{slot.time}}
+                        >
+                        <select style="display: none" onclick="stopClick(event)">
+                            {% for m in masters %}
+                            <option value={{m.id}}>{{m.username}}</option>
+                            {% endfor %}
+                        </select>
+                    </li>
+                    {% endif %}
+                    
+                {% endfor %}
+            </ul>
+        </td>
+        {% endfor %}
+    </tbody>
+</table>
+<!-- ва -->
+
+
